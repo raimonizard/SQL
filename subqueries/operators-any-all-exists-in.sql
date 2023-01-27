@@ -1,24 +1,20 @@
+#Examples of SQL subquering operators
+** Database: [DB_Northwind.sql "DB installation script"]
+```sql
 use northwind;
-
+```
+##ALL Operator
+```sql
 SELECT O.*
 FROM Orders O 
 WHERE O.Orderdate >= ALL(SELECT OrderDate
-							FROM Orders);
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
+			 FROM Orders);
+```sql
 SELECT *
 FROM Products
 WHERE UnitPrice < (SELECT MAX(UnitPrice) FROM Products)
 ORDER BY UnitPrice DESC;
+```
 
 SELECT *
 FROM Products
