@@ -1,7 +1,9 @@
 # Exercicis de GROUP BY i HAVING
-**Base de dades: [northwind](../databases/northwind-db/DB_Northwind.sql "DB installation script")**
+**Base de dades: [northwind](../databases/northwind-db/northwind-db-install.sql "DB installation script")**
 
-**Model Relacional:** ![alt text](../databases/northwind-db/MR-Northwind_full.png "Northwind relational model")
+**Model Relacional:** ![Model Relacional de northwind db](../databases/northwind-db/northwind-db-rm.png "Northwind relational model")
+
+---
 
 1. Retorna un recompte de quants repartidors (shippers) hi ha.
 2. Calcula quants proveïdors (suppliers) hi ha per ciutat.
