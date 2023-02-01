@@ -1,11 +1,13 @@
 # Examples of SQL subquering operators
 
-**Database [installation](DB_Northwind.sql "DB installation script")**
+**Database: [northwind](../databases/northwind-db/DB_Northwind.sql "DB installation script")**
+**Relational Model:** ![alt text](../databases/northwind-db/MR-Northwind_full.png "Northwind relational model")
+
 ```sql
 USE northwind;
 ```
 
-## ANY Operator: Some element(s) of the upper query matches the criteria in the subquery 
+## ANY Operator: Some element(s) of the upper query matche the criteria in the subquery 
 ### Example 1: Get all the products in the table except the most expensive one(s). There could be more than one product excluded if they match the same highest price
 #### Solution 1 using MAX
 ```sql
@@ -41,21 +43,20 @@ ORDER BY P.UnitPrice ASC;
 ```
 
 ## ALL Operator: All the elements of the upper query match the criteria on the subquery
-### Example 1: Get all the orders except the oldest one(s) (its/their order date will have the lowest value)
+### Example 1: Get all the orders except the oldest one(s) (its/their order date will have the lowest date value)
 #### Solution 1 using MAX
 ```sql
 SELECT *
-FROM Products P
-WHERE P.UnitPrice < (SELECT MAX(UnitPrice) FROM Products)
-ORDER BY P.UnitPrice DESC;
+FROM Orders O
+WHERE O.Orderdate > (SELECT MIN(O1.OrderDate) FROM Orders O1);
 ```
 
 #### Solution 2 using >= ALL
 ```sql
 SELECT O.*
 FROM Orders O 
-WHERE O.Orderdate >= ALL(SELECT OrderDate
-			 FROM Orders);
+WHERE O.Orderdate >= ALL (SELECT O1.OrderDate
+						  FROM Orders O1);
 ```
 
 
@@ -65,8 +66,8 @@ WHERE O.Orderdate >= ALL(SELECT OrderDate
 SELECT P.*
 FROM Products P
 WHERE 	P.UnitPrice = (SELECT MIN(UnitPrice) FROM Products)
-	OR
-	P.UnitPrice = (SELECT MAX(UnitPrice) FROM Products);
+		OR
+		P.UnitPrice = (SELECT MAX(UnitPrice) FROM Products);
 ```
 
 #### Solution 2 using <= ALL and >= ALL
@@ -74,8 +75,8 @@ WHERE 	P.UnitPrice = (SELECT MIN(UnitPrice) FROM Products)
 SELECT P.* 
 FROM Products P
 WHERE 	P.UnitPrice <= ALL (SELECT UnitPrice FROM Products)
-	OR
-	P.UnitPrice >= ALL (SELECT UnitPrice FROM Products);
+		OR
+		P.UnitPrice >= ALL (SELECT UnitPrice FROM Products);
 ```
 
 ## EXISTS Operator: It will show only the elements existing in the subquery. This operator is used to apply filters.
@@ -85,7 +86,7 @@ WHERE 	P.UnitPrice <= ALL (SELECT UnitPrice FROM Products)
 SELECT C.*
 FROM Customers C
 WHERE C.CustomerID NOT IN (SELECT DISTINCT O.CustomerID
-			   FROM Orders O);
+						   FROM Orders O);
 ```
 
 #### Option 2 using LEFT JOIN + OrdersID IS NULL
@@ -110,7 +111,7 @@ HAVING COUNT(DISTINCT O.OrderID) = 0;
 SELECT C.*
 FROM Customers C
 WHERE NOT EXISTS  (SELECT O.CustomerID
-		   FROM Orders O
+				   FROM Orders O
                    WHERE C.CustomerID = O.CustomerID);
 ```
 
