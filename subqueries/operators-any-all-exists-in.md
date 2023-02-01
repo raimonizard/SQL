@@ -1,11 +1,18 @@
 # Examples of SQL subquering operators
 
-**Database: [northwind](../databases/northwind-db/DB_Northwind.sql "DB installation script")**
-**Relational Model:** ![alt text](../databases/northwind-db/MR-Northwind_full.png "Northwind relational model")
+**Database installation script: [northwind](../databases/northwind-db/northwind-db-install.sql "DB installation script")**
 
+**Relational Model:**
+![Northwind db Relational Model](../databases/northwind-db/northwind-db-rm.png "Northwind relational model")
+
+---
+
+**Remember to point to the proper database**:
 ```sql
 USE northwind;
 ```
+
+----
 
 ## ANY Operator: Some element(s) of the upper query matche the criteria in the subquery 
 ### Example 1: Get all the products in the table except the most expensive one(s). There could be more than one product excluded if they match the same highest price
