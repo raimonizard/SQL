@@ -1,0 +1,27 @@
+CREATE OR REPLACE TYPE Calculadora AS OBJECT(
+	retorn NUMBER,
+  STATIC FUNCTION suma(x NUMBER, y NUMBER) RETURN NUMBER,
+  STATIC FUNCTION resta(x NUMBER, y NUMBER) RETURN NUMBER
+);
+
+/
+    
+CREATE OR REPLACE TYPE BODY Calculadora AS
+	STATIC FUNCTION suma(x NUMBER, y NUMBER) RETURN NUMBER IS
+    BEGIN
+		RETURN x + y;
+	END;
+	STATIC FUNCTION resta(x NUMBER, y NUMBER) RETURN NUMBER IS
+    BEGIN
+		RETURN x - y;
+	END;
+END;
+
+/
+
+DECLARE
+  resultat_suma NUMBER;
+BEGIN
+	resultat_suma := Calculadora.suma(3,4);
+	DBMS_OUTPUT.PUT_LINE(Calculadora.suma(3,4));
+END;
