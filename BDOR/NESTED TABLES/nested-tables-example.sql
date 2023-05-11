@@ -15,16 +15,16 @@ CREATE OR REPLACE TYPE nba_player as OBJECT(
 -- Create the type body of nba_player
 CREATE OR REPLACE TYPE BODY nba_player AS
 	CONSTRUCTOR FUNCTION nba_player (pid INT, pname VARCHAR2, psurname VARCHAR2) RETURN SELF AS RESULT IS
-    BEGIN
+	BEGIN
 		SELF.id := pid;
-    	SELF.name := pname;
+		SELF.name := pname;
 		SELF.surname := psurname;
-    	RETURN ;
-    END;
+		RETURN ;
+	END;
 	FINAL MAP MEMBER FUNCTION sortplayers RETURN NUMBER IS
 	BEGIN
 		RETURN SELF.shirtnumber;
-    END;       
+	END;
 END;    
 
 DROP TYPE static_array;
