@@ -39,6 +39,8 @@ CREATE OR REPLACE TYPE BODY Bici AS
 		BEGIN
 			SELF.marca := p_marca;
 			SELF.model := p_model;
+			SELF.pes := p_pes;
+			SELF.preu := p_preu;
 			RETURN ;
 		END;
 	-- Definició MAP MEMBER FUNCTION
