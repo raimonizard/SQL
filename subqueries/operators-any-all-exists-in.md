@@ -14,7 +14,7 @@ USE northwind;
 
 ----
 
-## ANY Operator: Some element(s) of the upper query matche the criteria in the subquery 
+## ANY Operator: Some element(s) of the upper query match the criteria in the subquery 
 ### Example 1: Get all the products in the table except the most expensive one(s). There could be more than one product excluded if they match the same highest price
 #### Solution 1 using MAX
 ```sql
